@@ -8,7 +8,7 @@
 		<f:view contracts="#{view.locale.language}">
 			<ui:composition template="/template.xhtml">
 				<ui:define name="content">
-					<h1>#{msg['list_campaigns.my_campaigns']}</h1>
+					<h1>#{msg['listCampaigns.my_campaigns']}</h1>
 					<h:form>
 						<p:dataTable value="#{campaignListProducer.campaigns}" var="campaign">
 							<p:column>
@@ -16,36 +16,36 @@
 									actionListener="#{listCampaignsController.doDeleteCampaign(campaign)}" />
 							</p:column>
 							<p:column>
-								<f:facet name="header">#{msg['list_campaigns.name']}</f:facet>
+								<f:facet name="header">#{msg['listCampaigns.name']}</f:facet>
 								<h:outputText value="#{campaign.name}" />
 							</p:column>
 							<p:column>
-								<f:facet name="header">#{msg['list_campaigns.target_amount']}</f:facet>
+								<f:facet name="header">#{msg['listCampaigns.target_amount']}</f:facet>
 								<h:outputText value="#{campaign.targetAmount}">
 									<f:convertNumber type="currency" currencyCode="EUR"/>
 								</h:outputText>
 							</p:column>
 							<p:column>
-								<f:facet name="header">#{msg['list_campaigns.donated_so_far']}</f:facet>
+								<f:facet name="header">#{msg['listCampaigns.donated_so_far']}</f:facet>
 								<h:outputText value="#{campaign.amountDonatedSoFar}">
 									<f:convertNumber type="currency" currencyCode="EUR"/>
 								</h:outputText>
 							</p:column>
 							<p:column>
 								<p:commandLink action="#{listCampaignsController.doEditCampaign(campaign)}" ajax="false"
-									value="#{msg['list_campaigns.edit']}" />
+									value="#{msg['listCampaigns.edit']}" />
 							</p:column>
 							<p:column>
 								<p:commandLink action="#{listCampaignsController.doListDonations(campaign)}" ajax="false"
-									value="#{msg['list_campaigns.list_donations']}" />
+									value="#{msg['listCampaigns.list_donations']}" />
 							</p:column>
 							<p:column>
 								<p:commandLink action="#{listCampaignsController.doEditDonationForm(campaign)}" ajax="false"
-									value="#{msg['list_campaigns.form']}" />
+									value="#{msg['listCampaigns.form']}" />
 							</p:column>
 						</p:dataTable>
 						<p:commandButton action="#{listCampaignsController.doAddCampaign}" ajax="false"
-							value="#{msg['list_campaigns.add_campaign']}" />
+							value="#{msg['listCampaigns.add_campaign']}" />
 						<p:confirmDialog message="#{msg['listCampaigns.ask_delete_campaign']}" header="#{msg['listCampaigns.delete_campaign']}"
 							severity="alert" widgetVar="confirmation">
 							<p:commandButton value="#{msg['listCampaigns.yes']}" oncomplete="confirmation.hide()" ajax="false"

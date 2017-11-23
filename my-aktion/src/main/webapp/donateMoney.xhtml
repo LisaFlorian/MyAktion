@@ -21,10 +21,10 @@
 </h:head> 
 <h:body style="margin:0; font-family: Verdana, sans-serif; font-size: 0.9em; background-color: ##{donateMoneyController.bgColor}; color: ##{donateMoneyController.textColor}"> 
 	<h1>#{msg['donateMoney.donate_money']}</h1>
-	<h:messages globalOnly="true"/>
-	<h:message for="bgColor" style="color: red;"/>	
-	<h:message for="textColor" style="color: red;"/>	
-	<h:message for="campaignId" style="color: red;"/>
+	<p:messages globalOnly="true" closable="true"/>
+	<p:message for="bgColor"/>	
+	<p:message for="textColor"/>	
+	<p:message for="campaignId"/>
 	<h:form>
 		<h:panelGrid columns="3">
 			<h:outputLabel value="#{msg['donateMoney.name']}:">
