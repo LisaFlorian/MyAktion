@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+	<body> 
+		<f:view contracts="#{view.locale.language}">
+			<ui:composition template="/template.xhtml">
+				<ui:define name="content">
+					<h1>#{msg['editDonationForm.edit_donation_form']}</h1>
+					<h:form>
+						<h:panelGrid columns="2">
+							<h:outputLabel value="#{msg['editDonationForm.background_color']}:">
+							</h:outputLabel>
+							<p:colorPicker value="#{editDonationFormController.bgColor}" id="bgColor" widgetVar="bgPicker">
+							</p:colorPicker>
+							<h:outputLabel value="#{msg['editDonationForm.text_color']}:">
+							</h:outputLabel>
+							<p:colorPicker value="#{editDonationFormController.textColor}" id="textColor" widgetVar="textPicker">
+							</p:colorPicker>
+							<h:outputLabel value="#{msg['editDonationForm.form_url']}:">
+							</h:outputLabel>
+							<p:inputTextarea value="#{editDonationFormController.url}" id="url" rows="6" cols="30" readonly="true"/>
+						</h:panelGrid>
+						<p:commandButton value="#{msg['editDonationForm.update_url']}" update="url"/>
+						<p:commandButton action="#{editDonationFormController.doOk()}" value="OK" ajax="false"/>
+					</h:form>
+				</ui:define>
+			</ui:composition>
+		</f:view>
+	</body> 
+</html>
