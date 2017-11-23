@@ -13,15 +13,21 @@
 						<h:panelGrid columns="2">
 							<h:outputLabel value="#{msg['editDonationForm.background_color']}:">
 							</h:outputLabel>
-							<p:colorPicker value="#{editDonationFormController.bgColor}" id="bgColor" widgetVar="bgPicker">
+							<p:colorPicker value="#{editDonationFormController.formConfig.bgColor}" id="bgColor" widgetVar="bgPicker">
 							</p:colorPicker>
 							<h:outputLabel value="#{msg['editDonationForm.text_color']}:">
 							</h:outputLabel>
-							<p:colorPicker value="#{editDonationFormController.textColor}" id="textColor" widgetVar="textPicker">
+							<p:colorPicker value="#{editDonationFormController.formConfig.textColor}" id="textColor" widgetVar="textPicker">
 							</p:colorPicker>
 							<h:outputLabel value="#{msg['editDonationForm.form_url']}:">
 							</h:outputLabel>
 							<p:inputTextarea value="#{editDonationFormController.url}" id="url" rows="6" cols="30" readonly="true"/>
+							<h:outputLabel value="#{msg['editDonationForm.title']}:">
+							</h:outputLabel>
+							<p:inputText value="#{editDonationFormController.formConfig.title}" id="title" maxlength="50">
+								<f:validateRequired/>
+								<f:validateLength minimum="5" maximum="50"/>
+							</p:inputText>
 						</h:panelGrid>
 						<p:commandButton value="#{msg['editDonationForm.update_url']}" update="url"/>
 						<p:commandButton action="#{editDonationFormController.doOk()}" value="OK" ajax="false"/>

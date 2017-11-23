@@ -9,33 +9,22 @@ import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
 import de.dpunkt.myaktion.model.Donation;
+import de.dpunkt.myaktion.model.FormConfig;
 
 @SessionScoped
 @Named
 public class DonateMoneyController implements Serializable {
 	private static final long serialVersionUID = 5493038842003809106L;
 	
-	private String textColor = "000000";
-	private String bgColor = "ffffff";
+	private FormConfig formConfig;
 	private Long campaignId;
 	private Donation donation;
 	
 	public DonateMoneyController() {
 		this.donation = new Donation();
+		this.formConfig = new FormConfig();
 	}
 	
-	public String getTextColor() {
-		return textColor;
-	}
-	public void setTextColor(String textColor) {
-		this.textColor = textColor;
-	}
-	public String getBgColor() {
-		return bgColor;
-	}
-	public void setBgColor(String bgColor) {
-		this.bgColor = bgColor;
-	}
 	public Long getCampaignId() {
 		return campaignId;
 	}
@@ -48,7 +37,13 @@ public class DonateMoneyController implements Serializable {
 	public void setDonation(Donation donation) {
 		this.donation = donation;
 	}
-	
+	public FormConfig getFormConfig() {
+		return formConfig;
+	}
+	public void setFormConfig(FormConfig formConfig) {
+		this.formConfig = formConfig;
+	}
+
 	public String doDonation() {
 		final FacesContext facesContext = FacesContext.getCurrentInstance();
 		final ResourceBundle resourceBundle = facesContext.getApplication().getResourceBundle(facesContext, "msg");

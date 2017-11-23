@@ -9,18 +9,23 @@ import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import de.dpunkt.myaktion.data.CampaignProducer;
+import de.dpunkt.myaktion.model.FormConfig;
 
 @SessionScoped
 @Named
 public class EditDonationFormController implements Serializable {
 	private static final long serialVersionUID = -4210085664588144340L;
 	
-	private String textColor = "000000";
-	private String bgColor = "ffffff";
+	private FormConfig formConfig;
 	
 	@Inject
 	private CampaignProducer campaignProducer;
 	
+	public EditDonationFormController() {
+		super();
+		formConfig = new FormConfig();
+	}
+
 	public String doOk() {
 		return Pages.LIST_CAMPAIGNS;
 	}
@@ -35,23 +40,15 @@ public class EditDonationFormController implements Serializable {
 	}
 	
 	public String getUrl() {
-		return getAppURL() + "/" + Pages.DONATE_MONEY + ".jsf?bgColor=" + bgColor + "&textColor=" + textColor + 
-				"&campaignId=" + campaignProducer.getSelectedCampaign().getId(); 
+		return getAppURL() + "/" + Pages.DONATE_MONEY + ".jsf?bgColor=" + formConfig.getBgColor() + "&textColor=" + formConfig.getTextColor() + 
+				"&title=" + formConfig.getTitle() + "&campaignId=" + campaignProducer.getSelectedCampaign().getId(); 
 	}
 
-	public String getTextColor() {
-		return textColor;
+	public FormConfig getFormConfig() {
+		return formConfig;
 	}
 
-	public void setTextColor(String textColor) {
-		this.textColor = textColor;
-	}
-
-	public String getBgColor() {
-		return bgColor;
-	}
-
-	public void setBgColor(String bgColor) {
-		this.bgColor = bgColor;
+	public void setFormConfig(FormConfig formConfig) {
+		this.formConfig = formConfig;
 	}
 }

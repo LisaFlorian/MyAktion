@@ -9,18 +9,21 @@
 	<title>#{msg['donateMoney.donate_money']}</title>
 	<meta charset="utf-8"/>
 	<f:metadata>
-		<f:viewParam name="bgColor" id="bgColor" value="#{donateMoneyController.bgColor}">
+		<f:viewParam name="bgColor" id="bgColor" value="#{donateMoneyController.formConfig.bgColor}">
 			<f:validateRegex pattern="[A-Fa-f0-9]{6}"></f:validateRegex>
 		</f:viewParam>
-		<f:viewParam name="textColor" id="textColor" value="#{donateMoneyController.textColor}">
+		<f:viewParam name="textColor" id="textColor" value="#{donateMoneyController.formConfig.textColor}">
 			<f:validateRegex pattern="[A-Fa-f0-9]{6}"></f:validateRegex>
+		</f:viewParam>
+		<f:viewParam name="title" id="title" value="#{donateMoneyController.formConfig.title}">
+			<f:validateLength minimum="5" maximum="50"/>
 		</f:viewParam>
 		<f:viewParam name="campaignId" id="campaignId" converter="javax.faces.Long" value="#{donateMoneyController.campaignId}">
 		</f:viewParam>
 	</f:metadata>
 </h:head> 
-<h:body style="margin:0; font-family: Verdana, sans-serif; font-size: 0.9em; background-color: ##{donateMoneyController.bgColor}; color: ##{donateMoneyController.textColor}"> 
-	<h1>#{msg['donateMoney.donate_money']}</h1>
+<h:body style="margin:0; font-family: Verdana, sans-serif; font-size: 0.9em; background-color: ##{donateMoneyController.formConfig.bgColor}; color: ##{donateMoneyController.formConfig.textColor}"> 
+	<h1>#{donateMoneyController.formConfig.title}</h1>
 	<h:messages globalOnly="true"/>
 	<h:message for="bgColor" style="color: red;"/>	
 	<h:message for="textColor" style="color: red;"/>	
