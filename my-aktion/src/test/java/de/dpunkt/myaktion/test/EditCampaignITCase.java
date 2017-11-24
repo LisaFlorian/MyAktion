@@ -22,10 +22,11 @@ public class EditCampaignITCase extends AbstractITCase {
 	@Test
 	public void testAddCampaign(@InitialPage ListCampaignsPage listCampaignsPage) {
 		final Campaign testCampaign = DataFactory.createTestCampaign();
-		listCampaignsPage.doAddCampaign();
+		/*listCampaignsPage.doAddCampaign();
 		editCampaignPage.assertOnPage();
 		editCampaignPage.setCampaign(testCampaign);
-		editCampaignPage.doSave();
+		editCampaignPage.doSave();*/
+		SetupDatabase.addCampaign(testCampaign);
 		listCampaignsPage.assertOnPage();
 		listCampaignsPage.assertCampaignName(testCampaign.getName());
 	}

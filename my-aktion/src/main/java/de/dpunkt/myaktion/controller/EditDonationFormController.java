@@ -4,13 +4,14 @@ import java.io.Serializable;
 
 import javax.enterprise.context.SessionScoped;
 import javax.faces.context.FacesContext;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import javax.servlet.http.HttpServletRequest;
 
 import de.dpunkt.myaktion.data.CampaignProducer;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class EditDonationFormController implements Serializable {
 	private static final long serialVersionUID = -4210085664588144340L;
@@ -20,13 +21,14 @@ public class EditDonationFormController implements Serializable {
 	
 	@Inject
 	private CampaignProducer campaignProducer;
+	@Inject
+	private HttpServletRequest req;
 	
 	public String doOk() {
 		return Pages.LIST_CAMPAIGNS;
 	}
 	
 	private String getAppURL() {
-		HttpServletRequest req = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
 		String scheme = req.getScheme();
 		String serverName = req.getServerName();
 		int serverPort = req.getServerPort();

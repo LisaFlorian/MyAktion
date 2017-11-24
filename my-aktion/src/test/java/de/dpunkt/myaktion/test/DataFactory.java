@@ -12,6 +12,7 @@ public class DataFactory {
 		campaign.setTargetAmount(1000d);
 		campaign.setDonationMinimum(20d);
 		campaign.setAccount(new Account("Max Mustermann", "ABC Bank", "DE44123456780100200300"));
+		campaign.setAmountDonatedSoFar(40d);
 		return campaign;
 	}
 	
