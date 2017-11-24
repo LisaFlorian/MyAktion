@@ -16,6 +16,7 @@ import javax.inject.Named;
 import de.dpunkt.myaktion.model.Donation;
 import de.dpunkt.myaktion.model.Donation.Status;
 import de.dpunkt.myaktion.services.DonationService;
+import de.dpunkt.myaktion.util.Logs.FachLog;
 
 @ViewScoped
 @Named
@@ -32,6 +33,7 @@ public class DonateMoneyController implements Serializable {
 	@Inject
 	private FacesContext facesContext;
 	@Inject
+	@FachLog
 	private Logger logger;
 	
 	@PostConstruct

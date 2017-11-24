@@ -2,6 +2,8 @@ package de.dpunkt.myaktion.services;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javax.annotation.Resource;
 import javax.annotation.security.RolesAllowed;
@@ -15,6 +17,7 @@ import javax.persistence.TypedQuery;
 
 import de.dpunkt.myaktion.model.Campaign;
 import de.dpunkt.myaktion.model.Organizer;
+import de.dpunkt.myaktion.util.Logs.TecLog;
 
 //@RequestScoped
 @Stateless
@@ -25,8 +28,13 @@ public class CamapignServiceBean implements CampaignService {
 	@Resource
 	private SessionContext sessionContext;
 
+	@Inject
+	@TecLog
+	private Logger logger;
+	
 	@Override
 	public List<Campaign> getAllCampaigns() {
+		logger.log(Level.INFO, "log.get_all_campaigns");
 		TypedQuery<Campaign> query = entityManager.createNamedQuery(Campaign.findByOrganizer, Campaign.class);
 		query.setParameter("organizer", getLoggedinOrganizer());
 		List<Campaign> campaigns = query.getResultList();
