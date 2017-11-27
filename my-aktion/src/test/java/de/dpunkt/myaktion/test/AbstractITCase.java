@@ -10,6 +10,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 public abstract class AbstractITCase {
 	@Deployment(testable=false)
 	public static WebArchive createDeployment() {
-		return ShrinkWrap.create(ZipImporter.class, "test.war").importFrom(new File("target/my-aktion.war")).as(WebArchive.class);
+		WebArchive archive = ShrinkWrap.create(ZipImporter.class, "test.war").importFrom(new File("target/my-aktion.war")).as(WebArchive.class);
+		archive.delete("/WEB-INF/classes/META-INF/persistence.xml");
+		//archive.addAsResource("META-INF/persistence-test.xml", "META-INF/persistence.xml");
+		return archive;
 	}
 }

@@ -17,4 +17,9 @@ public class Events {
 	@Retention(RetentionPolicy.RUNTIME)
 	public @interface Deleted {
 	}
+	@Qualifier
+	@Target({ElementType.FIELD,ElementType.PARAMETER})
+	@Retention(RetentionPolicy.RUNTIME)
+	public @interface Updated {
+	}
 }

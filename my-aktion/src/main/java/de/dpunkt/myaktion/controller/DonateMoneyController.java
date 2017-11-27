@@ -14,6 +14,8 @@ import javax.inject.Inject;
 import javax.inject.Named;
 
 import de.dpunkt.myaktion.model.Donation;
+import de.dpunkt.myaktion.model.Donation.Status;
+import de.dpunkt.myaktion.services.DonationService;
 
 @ViewScoped
 @Named
@@ -24,6 +26,8 @@ public class DonateMoneyController implements Serializable {
 	private String bgColor = "ffffff";
 	private Long campaignId;
 	private Donation donation;
+	@Inject
+	private DonationService donationService;
 	
 	@Inject
 	private FacesContext facesContext;
@@ -61,6 +65,8 @@ public class DonateMoneyController implements Serializable {
 	}
 	
 	public String doDonation() {
+		getDonation().setStatus(Status.IN_PROCESS);
+		donationService.addDonation(getCampaignId(), getDonation());
 		logger.log(Level.INFO, "log.donateMoney.thank_you", new Object[]{getDonation().getDonorName(), getDonation().getAmount()});
 		final ResourceBundle resourceBundle = facesContext.getApplication().getResourceBundle(facesContext, "msg");
 		final String msg = resourceBundle.getString("donateMoney.thank_you");

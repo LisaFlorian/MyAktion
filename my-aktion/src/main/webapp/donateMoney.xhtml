@@ -10,10 +10,8 @@
 	<meta charset="utf-8"/>
 	<f:metadata>
 		<f:viewParam name="bgColor" id="bgColor" value="#{donateMoneyController.bgColor}">
-			<f:validateRegex pattern="[A-Fa-f0-9]{6}"></f:validateRegex>
 		</f:viewParam>
 		<f:viewParam name="textColor" id="textColor" value="#{donateMoneyController.textColor}">
-			<f:validateRegex pattern="[A-Fa-f0-9]{6}"></f:validateRegex>
 		</f:viewParam>
 		<f:viewParam name="campaignId" id="campaignId" converter="javax.faces.Long" value="#{donateMoneyController.campaignId}">
 		</f:viewParam>
@@ -30,26 +28,22 @@
 			<h:outputLabel value="#{msg['donateMoney.name']}:">
 			</h:outputLabel>
 			<p:inputText value="#{donateMoneyController.donation.donorName}" id="name">
-				<f:validateRequired/>
 			</p:inputText>
 			<p:message for="name"/>
 			<h:outputLabel value="#{msg['donateMoney.iban']}:">
 			</h:outputLabel>
 			<p:inputText value="#{donateMoneyController.donation.account.iban}" id="iban">
-				<f:validateRequired/>
 			</p:inputText>
 			<p:message for="iban"/>
 			<h:outputLabel value="#{msg['donateMoney.name_of_bank']}:">
 			</h:outputLabel>
 			<p:inputText value="#{donateMoneyController.donation.account.nameOfBank}" id="name_bank">
-				<f:validateRequired/>
 			</p:inputText>
-			<h:message for="name_bank" style="color: red;"/>
+			<p:message for="name_bank"/>
 			<h:outputLabel value="#{msg['donateMoney.donation_amount']}:">
 			</h:outputLabel>
 			<h:panelGroup>
 				<p:inputText value="#{donateMoneyController.donation.amount}" id="donationAmount">
-					<f:validateRequired/>
 					<f:convertNumber maxFractionDigits="2" minFractionDigits="2"/>
 				</p:inputText> EUR
 			</h:panelGroup>

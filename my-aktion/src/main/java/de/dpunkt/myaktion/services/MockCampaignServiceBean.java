@@ -53,5 +53,8 @@ public class MockCampaignServiceBean implements CampaignService {
 		ret.add(campaign2);
 		return ret;
 	}
+	public void addCampaign(Campaign campaign){}
+	public void deleteCampaign(Campaign campaign){}
+	public void updateCampaign(Campaign campaign){}
 
 }
