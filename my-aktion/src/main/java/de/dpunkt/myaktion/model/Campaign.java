@@ -8,8 +8,11 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.EntityListeners;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -18,12 +21,16 @@ import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import de.dpunkt.myaktion.util.DateCreatedEntityListener;
+
 @NamedQueries({
 	@NamedQuery(name=Campaign.findAll, query="SELECT c FROM Campaign c ORDER BY c.name"),
 	@NamedQuery(name=Campaign.getAmountDonatedSoFar, query="SELECT SUM(d.amount) FROM Donation d WHERE d.campaign= :campaign")
 })
 @Entity
-public class Campaign {
+@EntityListeners(DateCreatedEntityListener.class)
+@Inheritance(strategy=InheritanceType.SINGLE_TABLE)
+public class Campaign extends DateEntity{
 	public static final String findAll = "Campaign.findAll";
 	public static final String getAmountDonatedSoFar = "Campaign.getAmountDonatedSoFar";
 	
@@ -46,7 +53,7 @@ public class Campaign {
 	private Long id;
 	@OneToMany(mappedBy="campaign", cascade=CascadeType.REMOVE)
 	private List<Donation> donations;
-	
+
 	public Campaign() {
 		account = new Account();
 	}
