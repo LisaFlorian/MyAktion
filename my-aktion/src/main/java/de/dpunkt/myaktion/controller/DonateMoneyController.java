@@ -65,13 +65,18 @@ public class DonateMoneyController implements Serializable {
 	}
 	
 	public String doDonation() {
-		getDonation().setStatus(Status.IN_PROCESS);
-		donationService.addDonation(getCampaignId(), getDonation());
-		logger.log(Level.INFO, "log.donateMoney.thank_you", new Object[]{getDonation().getDonorName(), getDonation().getAmount()});
-		final ResourceBundle resourceBundle = facesContext.getApplication().getResourceBundle(facesContext, "msg");
-		final String msg = resourceBundle.getString("donateMoney.thank_you");
-		facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
-		init();
+		try {
+			
+			getDonation().setStatus(Status.IN_PROCESS);
+			donationService.addDonation(getCampaignId(), getDonation());
+			logger.log(Level.INFO, "log.donateMoney.thank_you", new Object[]{getDonation().getDonorName(), getDonation().getAmount()});
+			final ResourceBundle resourceBundle = facesContext.getApplication().getResourceBundle(facesContext, "msg");
+			final String msg = resourceBundle.getString("donateMoney.thank_you");
+			facesContext.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_INFO, msg, null));
+			init();
+		} catch(Exception e) {
+			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+		}
 		return Pages.DONATE_MONEY;
 	}
 }

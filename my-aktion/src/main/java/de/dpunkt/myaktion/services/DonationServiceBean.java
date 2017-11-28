@@ -3,6 +3,8 @@ package de.dpunkt.myaktion.services;
 import java.util.List;
 
 import javax.ejb.Stateless;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
@@ -25,6 +27,10 @@ public class DonationServiceBean implements DonationService {
 	@Override
 	public void addDonation(Long campaignId, Donation donation) {
 		Campaign managedCampaign = entityManager.find(Campaign.class, campaignId);
+		if(donation.getAmount() < managedCampaign.getDonationMinimum())
+		{
+			throw new RuntimeException("mindestbetrag ist "+managedCampaign.getDonationMinimum()+" euro");
+		}
 		donation.setCampaign(managedCampaign);
 		entityManager.persist(donation);
 	}
