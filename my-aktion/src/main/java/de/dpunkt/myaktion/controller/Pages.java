@@ -6,4 +6,6 @@ public class Pages {
 	public static final String EDIT_DONATION_FORM = "/organizer/editDonationForm";
 	public static final String LIST_DONATIONS = "/organizer/listDonations";
 	public static final String DONATE_MONEY = "donateMoney";
+	public static final String ADD_ORGANIZER = "addOrganizer";
+	public static final String LOGIN = "login";
 }

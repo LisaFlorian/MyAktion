@@ -1,0 +1,51 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"> 
+
+<h:head>
+	<title>#{msg['addOrganizer.add_organizer']}</title>
+	<meta charset="utf-8"/>
+</h:head> 
+<h:body style="margin:0; font-family: Verdana, sans-serif; font-size: 0.9em"> 
+	<h1>#{msg['addOrganizer.add_organizer']}</h1>
+	<p:messages globalOnly="true" closable="true"/>
+	<!-- <p:message for="email"/>
+	<p:message for="password1"/>
+	<p:message for="password2"/>
+	<p:message for="firstName"/>
+	<p:message for="lastName"/>-->
+	<h:form>
+		<h:panelGrid columns="3">
+			<h:outputLabel value="#{msg['addOrganizer.first_name']}:">
+			</h:outputLabel>
+			<p:inputText value="#{editOrganizerController.organizer.firstName}" id="firstName">
+			</p:inputText>
+			<p:message for="firstName"/>
+			<h:outputLabel value="#{msg['addOrganizer.last_name']}:">
+			</h:outputLabel>
+			<p:inputText value="#{editOrganizerController.organizer.lastName}" id="lastName">
+			</p:inputText>
+			<p:message for="lastName"/>
+			<h:outputLabel value="#{msg['addOrganizer.email']}:">
+			</h:outputLabel>
+			<p:inputText value="#{editOrganizerController.organizer.email}" id="email">
+			</p:inputText>
+			<p:message for="email"/>
+			<h:outputLabel value="#{msg['addOrganizer.password']}:">
+			</h:outputLabel>
+			<p:password value="#{editOrganizerController.organizer.password}" id="password1" match="password2">
+			</p:password>
+			<p:message for="password1"/>
+			<h:outputLabel value="#{msg['addOrganizer.password2']}:">
+			</h:outputLabel>
+			<p:password value="#{editOrganizerController.organizer.password}" id="password2">
+			</p:password>
+			<p:message for="password2"/>
+		</h:panelGrid>
+		<p:commandButton action="#{editOrganizerController.doCreate()}" value="#{msg['addOrganizer.create']}" ajax="false"/>
+	</h:form>	
+</h:body> 
+</html>
