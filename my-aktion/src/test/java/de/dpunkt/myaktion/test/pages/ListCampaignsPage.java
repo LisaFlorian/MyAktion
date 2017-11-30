@@ -12,7 +12,7 @@ import javax.faces.convert.NumberConverter;
 
 import static org.jboss.arquillian.graphene.Graphene.guardHttp;
 
-@Location("listCampaigns.jsf")
+@Location("organizer/listCampaigns.jsf")
 public class ListCampaignsPage extends AbstractPage {
 	@FindBy(xpath = "//tbody/tr[last()]/td[2]")
 	private WebElement lastCampaignName;

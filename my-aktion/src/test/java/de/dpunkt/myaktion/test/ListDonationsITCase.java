@@ -17,6 +17,7 @@ public class ListDonationsITCase extends AbstractITCase {
 	
 	@Before
 	public void setupDatabase() {
+		login();
 		SetupDatabase.addCampaign(DataFactory.createTestCampaign());
 		SetupDatabase.addDonation(DataFactory.createDonation());
 		SetupDatabase.addDonation(DataFactory.createDonation());

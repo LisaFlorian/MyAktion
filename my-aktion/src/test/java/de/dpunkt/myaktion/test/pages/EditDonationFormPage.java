@@ -4,7 +4,7 @@ import org.jboss.arquillian.graphene.page.Location;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 
-@Location("editDonationForm.sf")
+@Location("organizer/editDonationForm.sf")
 public class EditDonationFormPage extends AbstractPage {
 	@FindBy(xpath = "//textarea[contains(@id, 'url')]")
 	private WebElement formUrl;

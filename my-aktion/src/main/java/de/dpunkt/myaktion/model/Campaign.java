@@ -13,6 +13,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
@@ -25,7 +26,8 @@ import de.dpunkt.myaktion.util.DateCreatedEntityListener;
 
 @NamedQueries({
 	@NamedQuery(name=Campaign.findAll, query="SELECT c FROM Campaign c ORDER BY c.name"),
-	@NamedQuery(name=Campaign.getAmountDonatedSoFar, query="SELECT SUM(d.amount) FROM Donation d WHERE d.campaign= :campaign")
+	@NamedQuery(name=Campaign.getAmountDonatedSoFar, query="SELECT SUM(d.amount) FROM Donation d WHERE d.campaign= :campaign"),
+	@NamedQuery(name=Campaign.findByOrganizer, query="SELECT c FROM Campaign c WHERE c.organizer = :organizer ORDER BY c.name")
 })
 @Entity
 @EntityListeners(DateCreatedEntityListener.class)
@@ -33,6 +35,7 @@ import de.dpunkt.myaktion.util.DateCreatedEntityListener;
 public class Campaign extends DateEntity{
 	public static final String findAll = "Campaign.findAll";
 	public static final String getAmountDonatedSoFar = "Campaign.getAmountDonatedSoFar";
+	public static final String findByOrganizer = "Campaign.findByOrganizer";
 	
 	@NotNull
 	@Size(min=4, max=30, message="{campaign.name.size}")
@@ -53,6 +56,8 @@ public class Campaign extends DateEntity{
 	private Long id;
 	@OneToMany(mappedBy="campaign", cascade=CascadeType.REMOVE)
 	private List<Donation> donations;
+	@ManyToOne
+	private Organizer organizer;
 
 	public Campaign() {
 		account = new Account();
@@ -99,5 +104,11 @@ public class Campaign extends DateEntity{
 	}
 	public void setDonations(List<Donation> donations) {
 		this.donations = donations;
+	}
+	public Organizer getOrganizer() {
+		return organizer;
+	}
+	public void setOrganizer(Organizer organizer) {
+		this.organizer = organizer;
 	}
 }
