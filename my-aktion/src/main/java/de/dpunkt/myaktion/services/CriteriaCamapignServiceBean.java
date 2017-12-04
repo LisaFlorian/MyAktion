@@ -19,8 +19,7 @@ import javax.persistence.criteria.Root;
 import de.dpunkt.myaktion.model.Campaign;
 import de.dpunkt.myaktion.model.Donation;
 
-//@RequestScoped
-@Stateless
+@RequestScoped
 @Alternative
 public class CriteriaCamapignServiceBean implements CampaignService {
 	@Inject

@@ -7,12 +7,13 @@ import java.security.NoSuchAlgorithmException;
 
 import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
+import javax.enterprise.context.RequestScoped;
 import javax.inject.Inject;
 import javax.persistence.EntityManager;
 
 import de.dpunkt.myaktion.model.Organizer;
 
-@Stateless
+@RequestScoped
 public class OrganizerServiceBean implements OrganizerService {
 	@Inject
 	EntityManager entityManager;

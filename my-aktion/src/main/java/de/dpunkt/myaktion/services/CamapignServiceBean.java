@@ -1,5 +1,6 @@
 package de.dpunkt.myaktion.services;
 
+import java.security.Principal;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -10,20 +11,23 @@ import javax.ejb.Stateless;
 import javax.enterprise.context.RequestScoped;
 import javax.enterprise.inject.Alternative;
 import javax.inject.Inject;
+import javax.interceptor.Interceptors;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 
 import de.dpunkt.myaktion.model.Campaign;
 import de.dpunkt.myaktion.model.Organizer;
+import de.dpunkt.myaktion.util.TransactionInterceptor;
+import de.dpunkt.myaktion.util.PerformanceAuditor;
 
-//@RequestScoped
-@Stateless
+@RequestScoped
 @RolesAllowed("Organizer")
+@Interceptors({TransactionInterceptor.class, PerformanceAuditor.class})
 public class CamapignServiceBean implements CampaignService {
 	@Inject
 	EntityManager entityManager;
-	@Resource
-	private SessionContext sessionContext;
+	@Inject
+	private Principal principal;
 
 	@Override
 	public List<Campaign> getAllCampaigns() {
@@ -60,7 +64,8 @@ public class CamapignServiceBean implements CampaignService {
 	}
 	
 	private Organizer getLoggedinOrganizer() {
-		String organizerEmail = sessionContext.getCallerPrincipal().getName();
+		String organizerEmail = principal.getName();
+		System.out.println("organizerEmail:" + organizerEmail);
 		Organizer organizer = entityManager.createNamedQuery(Organizer.findByEmail, Organizer.class).setParameter("email", organizerEmail).getSingleResult();
 		return organizer;
 	}
