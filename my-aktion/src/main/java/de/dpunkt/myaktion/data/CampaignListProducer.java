@@ -33,6 +33,8 @@ public class CampaignListProducer{
 	@Inject
 	private Logger logger;
 	
+	
+	
 	@PostConstruct
 	public void init() {
 		campaigns = campaignService.getAllCampaigns();
