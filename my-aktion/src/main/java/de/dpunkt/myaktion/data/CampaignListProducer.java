@@ -56,4 +56,7 @@ public class CampaignListProducer{
 		campaignService.updateCampaign(campaignEvent.getCampaign());
 		init();
 	}
+	
+	
+	
 }
